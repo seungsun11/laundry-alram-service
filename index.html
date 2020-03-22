@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <script src = "http://code.jquery.com/jquery-1.10.2.js"></script>
+  <title>Laundry</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <script type="text/javascript">
+    function diff(a,date){
+      var spl = a.split(':')
+      var t = spl[0];//12
+      var m = spl[1];//49
+      var t1 = date.getHours();//13
+      var m1 = date.getMinutes();//22
+      if (m1 < m){
+        var res = 60 - m + m1;
+        return res;
+      }
+      else{
+        var res = m1 - m;
+        return res;
+      }
+    }
+    $.ajax({
+      url: "http://192.168.112.168:3000/getUser/laundry_1",
+      type: "GET", // HTTP 요청 메소드(GET, POST 등)
+      dataType: "json" // 서버에서 보내줄 데이터의 타입
+    })
+    .done(function(json){
+      if(json.state == "0"){
+        document.getElementById("1-W6").innerHTML = "W6";
+      }
+      else if (json.state == "1"){
+          var d = new Date();
+          var s = json.date;
+          var t = diff(s,d);
+          document.getElementById("1-W6").innerHTML = t+"<div class=\"run\">";
+        }
+      })
+    .fail(function(){
+      alert("Fail");
+    })
+    $.ajax({
+      url: "http://192.168.112.168:3000/getUser/laundry_2",
+      type: "GET", // HTTP 요청 메소드(GET, POST 등)
+      dataType: "json" // 서버에서 보내줄 데이터의 타입
+    })
+    .done(function(json){
+      if(json.state == "0"){
+        document.getElementById("1-W7").innerHTML = "W6";
+      }
+      else if (json.state == "1"){
+          var d = new Date();
+          var s = json.date;
+          var t = diff(s,d);
+          document.getElementById("1-W7").innerHTML = t+"<div class=\"run\">";
+        }
+      })
+    .fail(function(){
+      alert("Fail");
+    })
+
+  </script>
+  <div class="DGIST">
+    <div class="room">
+      <div class="screen-side">
+        <h3 class="name">201동 세탁실</h3>
+      </div>
+      <ol class="dong">
+        <li class="row row--1">
+          <ol class="launs">
+            <li class="laun">
+              <label id="1-W6">W6
+              </label>
+            </li>
+            <li class="laun">
+              <label id="1-W7">W7
+              </label>
+            </li>
+            <li class="laun">
+              <label id="1-D3">
+                <div class="run">
+              </label>
+            </li>
+            <li class="laun">
+              <label id="1-D4">D4
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--2">
+          <ol class="launs" >
+            <li class="laun">
+              <label id="1-W5">W5
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--3">
+          <ol class="launs" >
+            <li class="laun">
+              <label for="3A">W4
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--4">
+          <ol class="launs" >
+            <li class="laun">
+              <label for="4A">
+                <div class="run">
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--5">
+          <ol class="launs" >
+            <li class="laun">
+              <label for="5A">W2</label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--6">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" disabled id="6A" />
+              <label for="6A">
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--7">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" disabled id="7A" />
+              <label for="7A">D3</label>
+            </li>
+            <li class="laun">
+              <label for="7B">W1</label>
+            </li>
+            <li class="laun">
+              <label for="7C">D2</label>
+            </li>
+            <li class="laun">
+              <label for="7D">D1</label>
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <div class="exit">
+      </div>
+    </div>
+    <div class="room">
+      <div class="screen-side">
+        <h3 class="name">202동 세탁실</h3>
+      </div>
+      <ol class="dong">
+        <li class="row row--1">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="1A" />
+              <label for="1A">W6
+              </label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="1B" />
+              <label for="1B">W7
+              </label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="1C" />
+              <label for="1C">
+                <div class="run">
+              </label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="1D" />
+              <label for="1D">D4
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--2">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="2A" />
+              <label for="2A">W5
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--3">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="3A" />
+              <label for="3A">W4
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--4">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="4A" />
+              <label for="4A">
+                <div class="run">
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--5">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="5A" />
+              <label for="5A">W2</label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--6">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" disabled id="6A" />
+              <label for="6A">
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--7">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" disabled id="7A" />
+              <label for="7A">
+              </label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="7B" />
+              <label for="7B">W1</label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="7C" />
+              <label for="7C">D2</label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="7D" />
+              <label for="7D">D1</label>
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <div class="exit">
+      </div>
+    </div>
+    <div class="room">
+      <div class="screen-side">
+        <h3 class="name">203동 세탁실</h3>
+      </div>
+      <ol class="dong">
+        <li class="row row--1">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="1A" />
+              <label for="1A">W6
+              </label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="1B" />
+              <label for="1B">W7
+              </label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="1C" />
+              <label for="1C">
+                <div class="run">
+              </label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="1D" />
+              <label for="1D">D4
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--2">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="2A" />
+              <label for="2A">W5
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--3">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="3A" />
+              <label for="3A">W4
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--4">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="4A" />
+              <label for="4A">
+                <div class="run">
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--5">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="5A" />
+              <label for="5A">W2</label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--6">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" disabled id="6A" />
+              <label for="6A">
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--7">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" disabled id="7A" />
+              <label for="7A">
+              </label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="7B" />
+              <label for="7B">W1</label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="7C" />
+              <label for="7C">D2</label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="7D" />
+              <label for="7D">D1</label>
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <div class="exit">
+      </div>
+    </div>
+    <div class="room">
+      <div class="screen-side">
+        <h3 class="name">204동 세탁실</h3>
+      </div>
+      <ol class="dong">
+        <li class="row row--1">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="1A" />
+              <label for="1A">W6
+              </label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="1B" />
+              <label for="1B">W7
+              </label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="1C" />
+              <label for="1C">
+                <div class="run">
+              </label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="1D" />
+              <label for="1D">D4
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--2">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="2A" />
+              <label for="2A">W5
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--3">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="3A" />
+              <label for="3A">W4
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--4">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="4A" />
+              <label for="4A">
+                <div class="run">
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--5">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" id="5A" />
+              <label for="5A">W2</label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--6">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" disabled id="6A" />
+              <label for="6A">
+              </label>
+            </li>
+          </ol>
+        </li>
+        <li class="row row--7">
+          <ol class="launs" >
+            <li class="laun">
+              <input type="checkbox" disabled id="7A" />
+              <label for="7A">
+              </label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="7B" />
+              <label for="7B">W1</label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="7C" />
+              <label for="7C">D2</label>
+            </li>
+            <li class="laun">
+              <input type="checkbox" id="7D" />
+              <label for="7D">D1</label>
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <div class="exit">
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
